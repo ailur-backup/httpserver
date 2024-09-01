@@ -9,6 +9,9 @@ import (
 	"time"
 )
 
+// Fun fact: the reference time is the specific time Jan 2 15:04:05 2006 MST, which reads:
+// 01 02 03 04 05 06 -0700
+// 1234567. Very clever, Google.
 var timeLayout = "02/Jan/2006 15:04:05"
 
 func StartServer(port string, path string, address string, protocolVer string) (error, int) {
