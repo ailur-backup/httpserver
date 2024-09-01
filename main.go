@@ -5,12 +5,27 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
+	"time"
 )
+
+var timeLayout = "02/Jan/2006 15:04:05"
 
 func StartServer(port string, path string, address string, protocolVer string) (error, int) {
 	var httpServer *http.Server
 	addressPort := address + ":" + port
-	fileServer := http.FileServer(http.Dir(path))
+	fileServer := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		filePath := path + r.URL.Path
+		http.ServeFile(w, r, filePath)
+		var ip string
+		if strings.Contains(r.RemoteAddr, ":") {
+			ip = strings.Split(r.RemoteAddr, ":")[0]
+		} else {
+			ip = r.RemoteAddr
+		}
+		fmt.Println(ip + " - - [" + time.Now().Format(timeLayout) + "] \"" + r.Method + " " + r.URL.Path + " " + r.Proto + "\" " + "200" + " -")
+	})
+
 	fmt.Println("Serving HTTP on", address, "port", port, "(http://"+address+":"+port+"/) ...")
 	if protocolVer == "2.0" || protocolVer == "2" {
 		httpServer = &http.Server{Addr: addressPort, Handler: fileServer, TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler))}
