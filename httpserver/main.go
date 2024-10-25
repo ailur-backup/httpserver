@@ -1,8 +1,8 @@
 package main
 
 import (
-	"git.ailur.dev/ailur/httpserver"
 	"fmt"
+	"git.ailur.dev/ailur/httpserver"
 	"os"
 	"strconv"
 	"strings"
