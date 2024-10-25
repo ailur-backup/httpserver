@@ -1,7 +1,7 @@
 package main
 
 import (
-	"concord.hectabit.org/HectaBit/httpserver"
+	"git.ailur.dev/ailur/httpserver"
 	"fmt"
 	"os"
 	"strconv"
