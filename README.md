@@ -15,17 +15,14 @@ Run as root
 ```
 CDIR=$PWD
 cd /tmp
-git clone https://concord.hectabit.org/HectaBit/httpserver --depth=1
+git clone https://git.ailur.dev/ailur/httpserver --depth=1
 cd httpserver/httpserver
 make install
-cd $CDIR
-CDIR=
 ```
-This also puts your enviroment right back where it was, how nice of me!
 
 ## Compiling
 ```
-git clone https://concord.hectabit.org/HectaBit/httpserver --depth=1
+git clone https://git.ailur.dev/ailur/httpserver --depth=1
 cd httpserver/httpserver
 make
 ```
